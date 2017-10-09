@@ -30,6 +30,7 @@ Concert(std::string concertName,std::vector<std::string> friendsList, int _desir
 
 	private:
 		int compareDates(std::tm d1,std::tm d2)const;
+		int compareDates2(std::tm d1,std::tm d2)const;
 		std::string cName;
 		std::vector<std::string> friends;	
 		int desire;

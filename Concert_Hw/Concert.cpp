@@ -6,8 +6,7 @@
 Concert::Concert(){
 	cName="";
 	
-	friends.clear();;
-	
+		
 	desire=0;
 
 	std::tm d1;
@@ -25,18 +24,10 @@ Concert::Concert(std::string concertName, std::vector<std::string> friendsList, 
 }
 
 bool Concert::operator<(const Concert& concert)const{
-	bool less;
-	std::tm d1;
-	std::tm d2;
-	d1.tm_year=2000;
-	d1.tm_mon=2;
-	d1.tm_mday=2;
-
-	d2=concert.date;
-	int dateComp=compareDates(d1 , d2);
-	if(dateComp){//if they are equal
-		bool desComp= this->desire - concert.getDesire();//compare the desires 
-		if(desComp){//if equal,
+	int dateComp=compareDates2(this->getDate() , concert.getDate());
+	if(dateComp==0){//if they are equal
+		int desComp= this->desire - concert.getDesire();//compare the desires 
+		if(desComp==0){//if equal,
 			return false;//They are the same so not less than
 		}
 		else if(desComp>0)//if this one is higher, not less than
@@ -67,7 +58,41 @@ int Concert::compareDates(std::tm d1, std::tm d2)const{
 
 	return diff;
 }
+//0 means equal
+//1 means that d1 is greater/later than d2
+//-1 means that d2 is greater/later than d1.
+int Concert::compareDates2(std::tm d1, std::tm d2)const{
 
+	if(d1.tm_year > d2.tm_year)
+		return 1;
+	else if(d1.tm_year == d2.tm_year){
+		if(d1.tm_mon > d2.tm_mon)
+			return 1;
+		else if(d1.tm_mon == d2.tm_mon){
+			if(d1.tm_mday > d2.tm_mday)
+				return 1;
+			else if(d1.tm_mday == d2.tm_mday)
+				return 0;
+			else
+				return -1;
+		}
+		else
+			return -1;
+	}
+	else	
+		return -1;
+
+	
+		
+
+
+
+
+
+	
+
+
+}
 
 
 
