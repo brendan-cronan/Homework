@@ -3,8 +3,10 @@
 
 int main(int argc, char** argv){
 
+	//declare all of the Concerts
 	Concert c1, c2, c3, c4, c5, c6, c7, c8, c9, c10;
-
+	
+	//Filling them all with data.
 	c1.setConcertName("Spooky Sings");
 	c1.setDesire(10);
 	c1.setDate(2000, 10, 31);
@@ -52,17 +54,16 @@ int main(int argc, char** argv){
 
 	c10 = Concert("Bob Dylan Concert", c8.getFriends(), 10, c7.getDate());
 	c10.setFriend("Bob");
-
+	
+	//create the vector holding them all.
 	std::vector<Concert::Concert> concerts = {c1,c2,c3,c4,c5,c6,c7,c8,c9,c10};
 
+	//sort them.
 	std::sort(concerts.begin(), concerts.end());//cpp reference .com
 
+	//loop through and print them all sorted.
 	for(int i=0;i<concerts.size();i++){
 		std::cout << "\nConcert: " << i+1;
-		concerts[i].printConcert();
-		std::cout << std::endl;
+		std::cout << concerts[i] << std::endl;
 	}		
-
-
-
 }

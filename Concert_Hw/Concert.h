@@ -28,7 +28,7 @@ Concert(std::string concertName,std::vector<std::string> friendsList, int _desir
 		void setDate(int y,int m,int d);
 
 
-	private:
+		friend std::ostream& operator<< (std::ostream& stream, const Concert& concert);
 		int compareDates(std::tm d1,std::tm d2)const;
 		int compareDates2(std::tm d1,std::tm d2)const;
 		std::string cName;
