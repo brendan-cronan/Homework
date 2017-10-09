@@ -24,7 +24,7 @@ Concert::Concert(std::string concertName, std::vector<std::string> friendsList, 
 }
 
 bool Concert::operator<(const Concert& concert)const{
-	int dateComp=compareDates2(this->getDate() , concert.getDate());
+	int dateComp=compareDates(this->getDate() , concert.getDate());
 	if(dateComp==0){//if they are equal
 		int desComp= this->desire - concert.getDesire();//compare the desires 
 		if(desComp==0){//if equal,
