@@ -38,12 +38,12 @@ statement:         point
 number:						INT			{"$$"=iVal;}
 							|		FLOAT		{"$$"=iVal;}
 							;
-point:						POINT number number											{point("$1","$2");}
-circle:						CIRCLE number number number number			{circle("$1","$2","$3","$4");}
-line:							LINE number number number number				{line("$1","$2","$3","$4");}
-rectangle:				RECTANGLE number number number number		{rect("$1","$2","$3","$4");}
+point:						POINT number number											{point("$2","$3");}
+circle:						CIRCLE number number number number			{circle("$2","$3","$4","$5");}
+line:							LINE number number number number				{line("$2","$3","$4","$5");}
+rectangle:				RECTANGLE number number number number		{rect("$2","$3","$4","$5");}
 
-set_color:				SET_COLOR	INT INT INT										{setCol("$1","$2","$3");}
+set_color:				SET_COLOR	INT INT INT										{setCol("$2","$3","$4");}
 
 
 
