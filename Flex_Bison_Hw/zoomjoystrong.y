@@ -1,7 +1,10 @@
 %{
 	#include <stdio.h>
+	#include <stdlib.h>
+	#include "zoomjoystrong.h"
 	void setCol(int r, int g, int b);
-
+	int yylex();
+	int yyerror(char* s);
 %}
 
 %union{
@@ -15,7 +18,7 @@
 %token RECTANGLE
 %token CIRCLE
 %token SET_COLOR
-%token <ival> INT
+%token <iVal> INT
 %token <fVal> FLOAT
 %token END
 %token SEMI
@@ -24,28 +27,28 @@
 
 
 %%
-program:           statement_list END SEMI
+program:           statement_list end_state
+
 statement_list:    statement
               |    statement statement_list
+							//|		 end_state
 							;
 statement:         point
               |    line
               |    circle
 							|		 rectangle
 							|		 set_color
+							//|		 end_state
 							;
 
-number:						INT			{"$$"=$1;}
-							|		FLOAT		{"$$"=$1;}
-							;
-point:						POINT number number											{point("$2","$3");}
-circle:						CIRCLE number number number number			{circle("$2","$3","$4","$5");}
-line:							LINE number number number number				{line("$2","$3","$4","$5");}
-rectangle:				RECTANGLE number number number number		{rect("$2","$3","$4","$5");}
+point:						POINT INT INT SEMI											{point($2,$3);}
+circle:						CIRCLE INT INT INT SEMI 								{circle($2,$3,$4);}
+line:							LINE INT INT INT INT SEMI								{line($2,$3,$4,$5);}
+rectangle:				RECTANGLE INT INT INT INT SEMI					{rectangle($2,$3,$4,$5);}
 
-set_color:				SET_COLOR	INT INT INT										{setCol("$2","$3","$4");}
+set_color:				SET_COLOR	INT INT INT SEMI							{setCol($2,$3,$4);}
 
-
+end_state:				END SEMI																{finish();exit(0);}
 
 
 
@@ -63,7 +66,11 @@ void setCol(int r, int g, int b){
 }
 
 
-
+int yyerror(char* s)
+{
+  fprintf(stderr, "%s\n",s);
+	return 0;
+}
 
 
 

@@ -7,10 +7,10 @@
 %%
 
 
-END|end		{return END;}
-;		{return SEMI;}
-point		{return POINT;}
-line		{return LINE;}
+end		    {return END;}
+;		      {return SEMI;}
+point		  {return POINT;}
+line		  {return LINE;}
 circle		{return CIRCLE;}
 rectangle	{return RECTANGLE;}
 set_color	{return SET_COLOR;}
@@ -23,7 +23,7 @@ set_color	{return SET_COLOR;}
 
 
 [" "]|\s|\t|\n		;
-. ;             {fprintf(stderr, "Syntax Error.");}
+. ;             {fprintf(stderr, "Lexing Error.");}
 
 
 %%
