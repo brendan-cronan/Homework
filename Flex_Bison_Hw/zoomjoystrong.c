@@ -1,4 +1,4 @@
-#include "smart_turtle.h"
+#include "zoomjoystrong.h"
 #include <math.h>
 #include <SDL2/SDL.h>
 
@@ -19,10 +19,10 @@ void setup(){
 	texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, WIDTH, HEIGHT);
 	SDL_SetRenderTarget(renderer, texture);
 	SDL_RenderSetScale( renderer, 3.0, 3.0 );
-	
+
 	SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
 	SDL_RenderClear( renderer );
-	SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255);	
+	SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255);
 	current.r = 0;
 	current.b = 0;
 	current.g = 0;
@@ -37,7 +37,7 @@ void set_color( int r, int g, int b){
 
 void point( int x, int y ){
 	SDL_SetRenderTarget(renderer, texture);
-	SDL_RenderDrawPoint(renderer, x, y);	
+	SDL_RenderDrawPoint(renderer, x, y);
 	SDL_SetRenderTarget(renderer, NULL);
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
 	SDL_RenderPresent(renderer);
@@ -57,7 +57,7 @@ void circle(int x, int y, int r){
 		float v = y + r * sin(i);
 		point(u, v);
 	}
-} 
+}
 
 void rectangle(int x, int y, int w, int h){
 	SDL_Rect rect;

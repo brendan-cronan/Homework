@@ -22,7 +22,7 @@ set_color	{return SET_COLOR;}
 
 
 
-' '|\s|\t|\n		;
+[" "]|\s|\t|\n		;
 . ;             {fprintf(stderr, "Syntax Error.");}
 
 
