@@ -1346,37 +1346,37 @@ yyreduce:
     {
         case 10:
 #line 38 "zoomjoystrong.y"
-    {"$$"=iVal;;}
+    {"$$"=(yyvsp[(1) - (1)].ival);;}
     break;
 
   case 11:
 #line 39 "zoomjoystrong.y"
-    {"$$"=iVal;;}
+    {"$$"=(yyvsp[(1) - (1)].fVal);;}
     break;
 
   case 12:
 #line 41 "zoomjoystrong.y"
-    {point("$1","$2");;}
+    {point("$2","$3");;}
     break;
 
   case 13:
 #line 42 "zoomjoystrong.y"
-    {circle("$1","$2","$3","$4");;}
+    {circle("$2","$3","$4","$5");;}
     break;
 
   case 14:
 #line 43 "zoomjoystrong.y"
-    {line("$1","$2","$3","$4");;}
+    {line("$2","$3","$4","$5");;}
     break;
 
   case 15:
 #line 44 "zoomjoystrong.y"
-    {rect("$1","$2","$3","$4");;}
+    {rect("$2","$3","$4","$5");;}
     break;
 
   case 16:
 #line 46 "zoomjoystrong.y"
-    {setCol("$1","$2","$3");;}
+    {setCol("$2","$3","$4");;}
     break;
 
 
@@ -1601,7 +1601,7 @@ yyreturn:
 
 
 void setCol(int r, int g, int b){
-	set_color(r,g,b);
+	//set_color(r,g,b);
 }
 
 
@@ -1613,7 +1613,7 @@ void setCol(int r, int g, int b){
 int main(int argc, char** argv){
 setup();
 yyparse();
-return 0;s
+return 0;
 
 
 

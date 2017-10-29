@@ -35,8 +35,8 @@ statement:         point
 							|		 set_color
 							;
 
-number:						INT			{"$$"=iVal;}
-							|		FLOAT		{"$$"=iVal;}
+number:						INT			{"$$"=$1;}
+							|		FLOAT		{"$$"=$1;}
 							;
 point:						POINT number number											{point("$2","$3");}
 circle:						CIRCLE number number number number			{circle("$2","$3","$4","$5");}
@@ -59,7 +59,7 @@ set_color:				SET_COLOR	INT INT INT										{setCol("$2","$3","$4");}
 
 
 void setCol(int r, int g, int b){
-	set_color(r,g,b);
+	//set_color(r,g,b);
 }
 
 
