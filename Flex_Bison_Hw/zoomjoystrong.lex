@@ -23,7 +23,7 @@ set_color	{return "SET_COLOR";}
 
 
 ' '|\s|\t|\n		;
-. ;             {fprintf(stderr, "Syntax Error.")}
+. ;             {fprintf(stderr, "Syntax Error.");}
 
 
 %%

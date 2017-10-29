@@ -71,7 +71,7 @@ void setCol(int r, int g, int b){
 int main(int argc, char** argv){
 setup();
 yyparse();
-return 0;s
+return 0;
 
 
 
