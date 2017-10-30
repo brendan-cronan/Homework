@@ -100,6 +100,13 @@
 	void setCol(int r, int g, int b);
 	int yylex();
 	int yyerror(char* s);
+	int isValidRGB(int in);
+	int checkX(int x);
+	int checkY(int y);
+	void drawCir(int x,int y, int r);
+	void drawPt(int x,int y);
+	void drawRect(int x,int y,int x2,int y2);
+	void drawLn(int x,int y,int x2,int y2);
 
 
 /* Enabling traces.  */
@@ -122,14 +129,14 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 10 "zoomjoystrong.y"
+#line 17 "zoomjoystrong.y"
 {
   int iVal;
   float fVal;
   char* sVal;
 }
 /* Line 193 of yacc.c.  */
-#line 133 "zoomjoystrong.tab.c"
+#line 140 "zoomjoystrong.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -142,7 +149,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 146 "zoomjoystrong.tab.c"
+#line 153 "zoomjoystrong.tab.c"
 
 #ifdef short
 # undef short
@@ -430,8 +437,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    30,    30,    32,    33,    36,    37,    38,    39,    40,
-      44,    45,    46,    47,    49,    51
+       0,    37,    37,    39,    40,    43,    44,    45,    46,    47,
+      52,    53,    54,    55,    57,    59
 };
 #endif
 
@@ -1348,38 +1355,38 @@ yyreduce:
   switch (yyn)
     {
         case 10:
-#line 44 "zoomjoystrong.y"
-    {point((yyvsp[(2) - (4)].iVal),(yyvsp[(3) - (4)].iVal));;}
+#line 52 "zoomjoystrong.y"
+    {drawPt((yyvsp[(2) - (4)].iVal),(yyvsp[(3) - (4)].iVal));;}
     break;
 
   case 11:
-#line 45 "zoomjoystrong.y"
-    {circle((yyvsp[(2) - (5)].iVal),(yyvsp[(3) - (5)].iVal),(yyvsp[(4) - (5)].iVal));;}
+#line 53 "zoomjoystrong.y"
+    {drawCir((yyvsp[(2) - (5)].iVal),(yyvsp[(3) - (5)].iVal),(yyvsp[(4) - (5)].iVal));}
     break;
 
   case 12:
-#line 46 "zoomjoystrong.y"
-    {line((yyvsp[(2) - (6)].iVal),(yyvsp[(3) - (6)].iVal),(yyvsp[(4) - (6)].iVal),(yyvsp[(5) - (6)].iVal));;}
+#line 54 "zoomjoystrong.y"
+    {drawLn((yyvsp[(2) - (6)].iVal),(yyvsp[(3) - (6)].iVal),(yyvsp[(4) - (6)].iVal),(yyvsp[(5) - (6)].iVal));;}
     break;
 
   case 13:
-#line 47 "zoomjoystrong.y"
-    {rectangle((yyvsp[(2) - (6)].iVal),(yyvsp[(3) - (6)].iVal),(yyvsp[(4) - (6)].iVal),(yyvsp[(5) - (6)].iVal));;}
+#line 55 "zoomjoystrong.y"
+    {drawRect((yyvsp[(2) - (6)].iVal),(yyvsp[(3) - (6)].iVal),(yyvsp[(4) - (6)].iVal),(yyvsp[(5) - (6)].iVal));;}
     break;
 
   case 14:
-#line 49 "zoomjoystrong.y"
+#line 57 "zoomjoystrong.y"
     {setCol((yyvsp[(2) - (5)].iVal),(yyvsp[(3) - (5)].iVal),(yyvsp[(4) - (5)].iVal));;}
     break;
 
   case 15:
-#line 51 "zoomjoystrong.y"
+#line 59 "zoomjoystrong.y"
     {finish();exit(0);;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1383 "zoomjoystrong.tab.c"
+#line 1390 "zoomjoystrong.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1593,13 +1600,73 @@ yyreturn:
 }
 
 
-#line 60 "zoomjoystrong.y"
+#line 68 "zoomjoystrong.y"
 
 
+/*************************************************
+*	For all methods below, 0 is good.  1 is bad.
+*************************************************/
+int checkX(int x){
+	if(x>=0&&x<=WIDTH)
+		return 0;
+	return 1;
+}
+int checkY(int y){
+	if(y>=0&&y<=HEIGHT)
+		return 0;
+	return 1;
+}
+void drawPt(int x, int y){
+	if(checkX(x)==0 && checkY(y)==0)
+		point(x,y);
+	else
+		fprintf(stderr,"INVALID POINT AT [%d, %d]",x,y);
+
+}
+void drawCir(int x,int y, int r){
+	if(checkX(x)==0 && checkY(y)==0){
+		if(r<=x && r<=y && r>=0 && r<=WIDTH-x && r<=HEIGHT-y){
+			circle(x,y,r);
+		}
+		else{
+			fprintf(stderr,"INVALID CIRCLE AT [%d, %d, %d]",x,y,r);
+		}
+	}
+	else{
+		fprintf(stderr,"INVALID CIRCLE AT [%d, %d, %d]",x,y,r);
+	}
+}
+void drawRect(int x, int y,int x2,int y2){
+	if(checkX(x)==0 && checkY(y)==0 && checkX(x2)==0 && checkY(y2)==0)
+		rectangle(x,y,x2,y2);
+	else
+		fprintf(stderr,"INVALID RECTANGLE AT [%d,%d,  %d,%d]",x,y,x2,y2);
+
+}
+void drawLn(int x, int y,int x2,int y2){
+	if(checkX(x)==0 && checkY(y)==0 && checkX(x2)==0 && checkY(y2)==0)
+		line(x,y,x2,y2);
+	else
+		fprintf(stderr,"INVALID LINE AT [%d,%d,  %d,%d]",x,y,x2,y2);
+
+}
 
 
+int isValidRGB(int in){
+	if(in>=0 && in <= 255){
+		return 0;//good!
+	}
+	else{
+		return 1;//BAD!
+	}
+}
 void setCol(int r, int g, int b){
-	//set_color(r,g,b);
+	if(isValidRGB(r)==0&&isValidRGB(g)==0&&isValidRGB(b)==0){
+		set_color(r,g,b);
+	}
+	else{
+		fprintf(stderr, "INVALID RGB VALUE: [%d, %d, %d]",r,g,b);
+	}
 }
 
 
