@@ -1,10 +1,8 @@
-from abc import ABC, abstractmethod
+from abc import ABCMeta, abstractmethod, ABC
 from random import randint
-class Monster(ABC):
-    def __init__(health, strength):
-        self.health=health
-        self.strength=strength
 
-    def randNum(lowVal,highVal):
-        return randInt(lowVal,highVal)
-    
+class Monster(ABC):
+    __metaclass__ = ABCMeta
+
+    def __init__(self):
+        print("Parent!")

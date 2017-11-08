@@ -1,6 +1,9 @@
-class Game:
-    def __init__():
+#!/usr/bin/env python3
+from Vampire import Vampire
 
+class Game:
+    def __init__(self):
+        vampire = Vampire()
 
 
 
@@ -9,4 +12,4 @@ class Game:
 
 
 if __name__ == "__main__":
-    game= new Game();
+    game = Game();
