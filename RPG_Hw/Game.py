@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from rpg import *
-from Monster import Monster
+from monsters import *
 
 class Game:
     def __init__(self):
