@@ -1,2 +1,0 @@
-class Neighborhood:
-    House[] houses;

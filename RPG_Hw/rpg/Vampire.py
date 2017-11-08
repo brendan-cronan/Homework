@@ -1,10 +1,9 @@
 from  Monster import Monster
-import Observer
 
 class Vampire(Monster):
 
     def __init__(self):
-        #self.health = Monster.randNum(100,200)
+        self.health = Monster.randNum(100,200)
         self.strength = 10
         self.margin = 10
 

@@ -3,6 +3,8 @@ from Vampire import Vampire
 
 class Game:
     def __init__(self):
+        hood = Neighborhood()
+
         vampire = Vampire()
 
 
