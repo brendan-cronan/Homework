@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
-from rpg import *
+
 from monsters import *
+from game import *
+#from monsters.Ghoul import Ghoul
 
 class Game:
     def __init__(self):
+
         hood = Neighborhood()
 
-        vampire = Vampire()
+        #gh=Ghoul()
+        #vampire = Vampire()
 
 
 

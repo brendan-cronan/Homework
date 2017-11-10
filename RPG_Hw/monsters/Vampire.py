@@ -1,6 +1,6 @@
-from  Monster import Monster
+#from  Monster import Monster
 
-class Vampire(Monster):
+class Vampire():
 
     def __init__(self):
         self.health = Monster.randNum(100,200)
