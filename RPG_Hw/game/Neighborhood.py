@@ -24,8 +24,7 @@ class Neighborhood(Observer):
 
 
 
-    def update(self):
+    def update(self,monster):
         self.monsterNum-=1
-        if(self.monsterNum==0):
+        if(self.monsterNum==0):#TODO: WIN STATE
             pass
-            #TODO: WIN STATE
