@@ -1,8 +1,6 @@
-from monsters.Game import *
-from monsters.House import *
-from monsters.Neighborhood import *
-from monsters.Observable import *
-from monsters.Observer import *
-from monsters.Player import *
-
-__all__=['Game','House','Neighborhood','Observable','Observer','Player']
+from game.House import *
+from game.Neighborhood import *
+from game.Observable import *
+from game.Observer import *
+from game.Player import *
+__all__=['House','Neighborhood','Observable','Observer','Player']
