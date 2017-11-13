@@ -25,10 +25,13 @@ if __name__ == "__main__":
 
     if(len(sys.argv) >= 2):
         options = Game.getOpts(sys.argv)
+        b=False
+        numHouse=Game.DEFAULT_HOUSE_NUMBER
         if '-d' in options:
-            b=True if "true" else False
-            game=Game(Game.DEFAULT_HOUSE_NUMBER,b)
+            b=True if options['-d'] == "true" else False
         if '-h' in options:
-            game=Game(int(myargs['-h']),False)
+            numHouse=int(options['-h'])
+
+        game=Game(numHouse,b)
     else:
-        game=Game(Game.DEFAULT_HOUSE_NUMBER,False)
+        game=Game(DEFAULT_HOUSE_NUMBER,False)
