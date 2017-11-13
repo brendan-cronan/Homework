@@ -34,4 +34,4 @@ if __name__ == "__main__":
 
         game=Game(numHouse,b)
     else:
-        game=Game(DEFAULT_HOUSE_NUMBER,False)
+        game=Game(Game.DEFAULT_HOUSE_NUMBER,False)

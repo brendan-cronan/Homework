@@ -13,7 +13,7 @@ class House(Observer,Observable):
         self.monsters=[]
         self.observers=[]
         for x in range(numMonsters):
-            self.monsters.append(self.makeMonster(randint(0,3)))
+            self.monsters.append(self.makeMonster(randint(0,4)))
 
     def printHouse(self):
         print("\n\nHouse #{:d}, Number of Monsters={:d}".format(self.houseNum,self.numMonsters))
@@ -21,11 +21,14 @@ class House(Observer,Observable):
             print("\t")
             self.monsters[x].printMonster()
 
-    def update(self):
-        update_observers()
+    def update(self,monster):
+        if monster in monsters:
+            monsters.remove(monster)
+            monsters.append(Person())
+        update_observers(monster)
 
 
-
+    """This takes a random number 1-4 and creates a monster based upon this."""
     def makeMonster(self,num):
         if(num==0):
             return Ghoul()
