@@ -1,5 +1,6 @@
 from game.Observer import Observer
 from game.House import House
+from game.Player import Player
 from monsters import *
 from random import randint
 
@@ -7,19 +8,29 @@ class Neighborhood(Observer):
     def __init__(self, numHouses, debug):
 
         self.houses=[]
+        row = []
         self.monsterNum=0
 
+        self.player=Player()
+
+
         for x in range(numHouses):
-            numMon=randint(0,10)
+            row=[]
 
-            self.monsterNum+=numMon
+            for y in range(numHouses):
+                numMon=randint(0,10)
 
-            house=House(numMon,x)
-            house.register(self)
-            self.houses.append(house)
+                self.monsterNum+=numMon
 
-            if(debug):#    Debug Purposes
-                house.printHouse()
+                house=House(numMon,y)
+                house.register(self)
+                row.append(house)
+
+                if(debug):#    Debug Purposes
+                    print ("\n\n{:d}, {:d}".format(x,y))
+                    house.printHouse()
+
+        self.houses.append(row)
 
 
 

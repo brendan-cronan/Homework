@@ -8,6 +8,7 @@ class Game:
     DEFAULT_HOUSE_NUMBER=10
     def __init__(self, numHouses=10, debug=False):
         hood = Neighborhood(numHouses, debug)
+        
     #i got this method off of a github tutorial
     #https://gist.github.com/dideler/2395703
     #I honestly could not do it cleaner than this on my own:)

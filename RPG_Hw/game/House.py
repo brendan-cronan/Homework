@@ -16,7 +16,7 @@ class House(Observer,Observable):
             self.monsters.append(self.makeMonster(randint(0,4)))
 
     def printHouse(self):
-        print("\n\nHouse #{:d}, Number of Monsters={:d}".format(self.houseNum,self.numMonsters))
+        print("\nHouse #{:d}, Number of Monsters={:d}".format(self.houseNum,self.numMonsters))
         for x in range(self.numMonsters):
             print("\t")
             self.monsters[x].printMonster()
