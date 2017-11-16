@@ -12,7 +12,9 @@ class Neighborhood(Observer):
         self.monsterNum=0
 
         self.player=Player()
-
+        
+        if(debug):
+            self.player.printPlayer()
 
         for x in range(numHouses):
             row=[]

@@ -9,9 +9,20 @@ class Game:
     def __init__(self, numHouses=10, debug=False):
         hood = Neighborhood(numHouses, debug)
         
+
+
+
+
+
+
+
+
+
+
     #i got this method off of a github tutorial
     #https://gist.github.com/dideler/2395703
     #I honestly could not do it cleaner than this on my own:)
+    @staticmethod
     def getOpts(argv):
         opts = {}  # Empty dictionary to store key-value pairs.
         while argv:  # While there are arguments left to parse...
