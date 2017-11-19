@@ -27,6 +27,10 @@ class House(Observer,Observable):
             monsters.append(Person())
         update_observers(monster)
 
+    def addPlayer(self, player):
+        self.player=player
+    def remPlayer(self):
+        self.player=None
 
     """This takes a random number 1-4 and creates a monster based upon this."""
     def makeMonster(self,num):

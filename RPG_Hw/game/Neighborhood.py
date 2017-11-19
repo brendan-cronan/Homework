@@ -12,7 +12,7 @@ class Neighborhood(Observer):
         self.monsterNum=0
 
         self.player=Player()
-        
+
         if(debug):
             self.player.printPlayer()
 
@@ -33,6 +33,18 @@ class Neighborhood(Observer):
                     house.printHouse()
 
         self.houses.append(row)
+
+
+    def getPlayer(self):
+        return self.player
+    def movePlayer(self,x,y):
+        loc=self.player.getLocation()
+
+        self.houses[loc[0]][loc[1]].remPlayer()
+
+        self.player.movePlayer(x,y)
+
+        self.houses[x][y].addPlayer(player)
 
 
 

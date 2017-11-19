@@ -44,6 +44,10 @@ class Player:
                 self.inventory[weapon] = self.inventory[weapon] - 1
 
 
+
+    def getLocation(self):
+        return self.loc
+
     def movePlayer(self,x,y):
         self.loc[0]=x
         self.loc[1]=y
@@ -65,7 +69,7 @@ class Player:
     def printPlayer(self):
         print("\nPlayer:\n\tHealth: {:d}\n\tAttack: {:d}\n\tLocation: {:d}, {:d}\n\tInventory:"
         .format(self.health,self.atk,self.loc[0],self.loc[1]))
-        
+
         for x in self.inventory:
             print("\t-\t{}\t:\t{:d}".format(x,self.inventory[x]))
 
