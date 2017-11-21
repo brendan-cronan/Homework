@@ -6,7 +6,7 @@ Persons have 100 health and are not harmed by your attacks."""
 class Person(Monster):
     def __init__(self):
         self.health = 100
-        self.strength = -5
+        self.strength = -5#pretty much the only difference
         self.margin = 0
         self.observers=[]
         self.name = "Person"

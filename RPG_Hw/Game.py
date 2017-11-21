@@ -3,15 +3,23 @@ from game import *
 from monsters import *
 import sys
 
+"""
+    The game class handles most of the Game Logic present in the, well, game
 
+    holds the neighborhood object and instantiates most of everything.
+
+"""
 class Game:
-    DEFAULT_HOUSE_NUMBER=10
+    DEFAULT_HOUSE_NUMBER=10#constant for ease of use.
+    #makes neighborhood.
     def __init__(self, numHouses=10, debug=False):
         self.hood = Neighborhood(numHouses, debug)
 
+    #calls the lower level attack logic
     def attack(self):
         self.hood.attackHouse()
 
+    #moves the player.
     def move(self,stringDir):
         direc=Game.getDir(stringDir)
         playerLoc=self.hood.getPlayer().getLocation()
@@ -22,7 +30,10 @@ class Game:
         if(self.hood.isValidSpace(newLoc[0],newLoc[1])):
             self.hood.movePlayer(newLoc[0],newLoc[1])
 
-
+    """
+        This takes a string direction and turns it into a set of two instructions
+        that tell the row and col to either inc/dec
+    """
     def getDir(stringDir):
         direc=[0,0]
         direction=stringDir.lower()
@@ -57,7 +68,8 @@ class Game:
         return opts
 
 
-
+#not used but didnt want to lose the code
+"""
 if __name__ == "__main__":
 
     if(len(sys.argv) >= 2):
@@ -72,3 +84,4 @@ if __name__ == "__main__":
         game=Game(numHouse,b)
     else:
         game=Game(Game.DEFAULT_HOUSE_NUMBER,False)
+"""

@@ -47,22 +47,24 @@ class House(Observer,Observable):
             self.monsters.append(Person())
             self.update_observers(monster)
 
-    #
+    #applies a given damage to all monsters with the given weapon
     def atk(self,dmgVal,weapon):
         for monster in self.monsters:
             monster.getHit(dmgVal,weapon)
 
         self.printHouse()
 
+    #gets collective damage from monsters to apply to player
     def damage(self):
         total=0.01
         for monster in self.monsters:
             total = total + monster.attack()
         return total
 
-
+    #adds player to this house
     def addPlayer(self, player):
         self.player=player
+    #removes said player
     def remPlayer(self):
         self.player=None
 

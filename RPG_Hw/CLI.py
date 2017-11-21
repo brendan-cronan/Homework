@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 import sys
 from Game import Game
+"""
+    This class is primarily responsible for the command line interface operations.
+
+    Takes care of most of the imputs and prompts for the user.
+
+    fairly self explanatory.
+
+"""
 class CLI:
-    directions={"n":"north","s":"south","e":"east","w":"west"}
+    directions={"n":"north","s":"south","e":"east","w":"west"}#abbreviations
     def __init__(self,_game):
         self.game=Game()
         leave=False
@@ -10,6 +18,7 @@ class CLI:
         while not leave:
             userIn=input(CLI.getPrompt()).lower()
 
+            #method to parse user input into meaningful commands
             self.parseInput(userIn)
 
             leave = (userIn == "quit")
@@ -18,15 +27,17 @@ class CLI:
         if(leave):
             print("Goodbye!")
 
+    #call the game attack method
     def attackCmd(self):
         print("You Attack the House.")
         self.game.attack()
 
+    #move in the specified direction
     def movePlayer(self,direc):
         print("You are moving {}".format(direc))
         self.game.move(direc)
 
-
+    #turns user input into something meaningful
     def parseInput(self,cmd):
         #Movement options
         if cmd in CLI.directions.keys():
@@ -44,11 +55,13 @@ class CLI:
             pass
 
 
-
+    #prompt the user for instruction and list possible commands
     def getPrompt():
         return "\nList of Commands includes...\nNorth, South, East, West, (n,s,e,w), Attack(atk), Stay(empty), or Quit(q).\n\nPlease Enter Your Command Here:\n >> "
 
 
+#main method and parse cmd line args.
+#also calls the Game() constructor
 if __name__ == "__main__":
     if(len(sys.argv) >= 2):
         options = Game.getOpts(sys.argv)
