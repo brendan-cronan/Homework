@@ -7,10 +7,47 @@ import sys
 class Game:
     DEFAULT_HOUSE_NUMBER=10
     def __init__(self, numHouses=10, debug=False):
-        hood = Neighborhood(numHouses, debug)
+        self.hood = Neighborhood(numHouses, debug)
+
+    def attack(self):
+        self.hood.attackHouse()
+
+    def move(self,stringDir):
+        direc=Game.getDir(stringDir)
+        playerLoc=self.hood.getPlayer().getLocation()
+        newLoc=[0,0]
+        newLoc[0]=playerLoc[0]+direc[0]
+        newLoc[1]=playerLoc[1]+direc[1]
+
+        if(self.hood.isValidSpace(newLoc[0],newLoc[1])):
+            self.hood.movePlayer(newLoc[0],newLoc[1])
+
+
+    def getDir(stringDir):
+        direc=[0,0]
+        direction=stringDir.lower()
+        if(direction=="north"):
+            direc[0]=0
+            direc[1]=-1
+        if(direction=="east"):
+            direc[0]=1
+            direc[1]=0
+        if(direction=="south"):
+            direc[0]=0
+            direc[1]=1
+        if(direction=="west"):
+            direc[0]=-1
+            direc[1]=0
+
+        return direc
+
+
+
+
     #i got this method off of a github tutorial
     #https://gist.github.com/dideler/2395703
     #I honestly could not do it cleaner than this on my own:)
+    @staticmethod
     def getOpts(argv):
         opts = {}  # Empty dictionary to store key-value pairs.
         while argv:  # While there are arguments left to parse...

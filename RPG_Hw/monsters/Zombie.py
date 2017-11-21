@@ -9,6 +9,7 @@ class Zombie(Monster):
         self.strength = 0
         self.margin = 10
         self.name = "Zombie"
+        self.observers=[]
 
     def attack(self):
         return self.getStrength() + Monster.randNum(0,self.getMargin())
@@ -17,7 +18,7 @@ class Zombie(Monster):
         d=damage
         if(weapon == "SourStraws"):
             d = damage * 2
-        self.health -= damage
+        self.health = self.health - d
         if(self.getHealth()<=0):
             self.die()
 
