@@ -4,7 +4,7 @@ class Observable(object):
         self.observers = []
 
 
-    def register(self, observer):
+    def add_observer(self, observer):
         if not observer in self.observers:
             self.observers.append(observer)
 

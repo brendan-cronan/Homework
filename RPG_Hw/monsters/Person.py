@@ -6,11 +6,12 @@ Persons have 100 health and are not harmed by your attacks."""
 class Person(Monster):
     def __init__(self):
         self.health = 100
-        self.strength = -1
+        self.strength = -10
         self.margin = 0
+        self.observers=[]
         self.name = "Person"
 
-    def getHit(self):
+    def getHit(self,damage,weapon):
         return self.getHealth()
 
     def attack(self):

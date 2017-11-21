@@ -9,6 +9,7 @@ class Ghoul(Monster):
         self.strength = 15
         self.margin = 15
         self.name= "Ghoul"
+        self.observers=[]
 
     def attack(self):
         return self.getStrength() + Monster.randNum(0,self.getMargin())
@@ -20,7 +21,7 @@ class Ghoul(Monster):
         d=damage
         if(weapon == "NerdBomb"):
             d=damage*5
-        self.health -= damage
+        self.health = self.health- d
         if(self.getHealth()<=0):
             self.die()
 
