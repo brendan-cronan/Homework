@@ -7,13 +7,14 @@ class Monster(ABC,Observable):
     def __init__(self):
         self.health = 100
         self.strength = 0
+        self.observers=[]
         self.margin = 0
         self.name = "MONSTER"
     @abstractmethod
     def attack(self):
         pass
     @abstractmethod
-    def getHit(self):
+    def getHit(self,damage,weapon):
         pass
 
     def getHealth(self):
@@ -30,7 +31,10 @@ class Monster(ABC,Observable):
         return randint(lowBound,upBound)
 
     def die(self):
-        update_observers(self)
+        print("DIE")
+        self.update_observers(self)
 
+    def __str__(self):
+        return "{}, ".format(self.name)
     def printMonster(self):
         print('Name: {},\t Health: {:d}, Strength: {:d}, Atk Margin: {:d}'.format(self.name,self.health,self.strength,self.margin))

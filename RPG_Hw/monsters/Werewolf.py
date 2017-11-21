@@ -6,6 +6,7 @@ class Werewolf(Monster):
         self.health = 200
         self.strength = 0
         self.margin = 40
+        self.observers=[]
         self.name = "Werewolf"
 
     def attack(self):
@@ -14,7 +15,7 @@ class Werewolf(Monster):
         d = damage
         if(weapon == "ChocolateBars" or weapon == "SourStraws"):
             d = 0
-        self.health -= damage
+        self.health = self.health- d
         if(self.health<=0):
             self.die()
 

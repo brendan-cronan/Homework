@@ -26,7 +26,7 @@ class Neighborhood(Observer):
                 self.monsterNum+=numMon
 
                 house=House(numMon,x*numHouses+y)
-                house.register(self)
+                house.add_observer(self)
                 row.append(house)
 
                 if(debug):#    Debug Purposes
@@ -49,6 +49,32 @@ class Neighborhood(Observer):
             print("You reach the end of the Neighborhood. \nChoose a different Direction")
             return False
 
+    def attackHouse(self):
+        playerPos=self.player.getLocation()
+        xpos=playerPos[0]
+        ypos=playerPos[1]
+        tmpHouse=self.houses[xpos][ypos]
+        tmpHouse.printHouse()
+        winput=False
+        while not winput:
+            wep=input("Which weapon would you like to use?\n>> ")
+            self.player.printPlayer()
+            atkVal=0.0
+            if wep=="" or wep == "leave":
+                winput=True
+                break
+            elif wep in Player.SHORT_WEAPONS.keys():
+                atkval=self.player.attack(Player.SHORT_WEAPONS[wep])
+                tmpHouse.atk(atkVal,wep)
+                suc=True
+            elif wep in Player.WEAPONS:
+                atkval=self.player.attack(wep)
+                tmpHouse.atk(atkVal,wep)
+                suc=True
+            else:
+                print("Incorrect Input. Try again.")
+                suc=False
+
 
 
 
@@ -61,14 +87,16 @@ class Neighborhood(Observer):
         self.player.printPlayer()
 
         self.houses[x][y].addPlayer(self.player)
+        self.houses[x][y].printHouse()
 
 
 
 
     def update(self,monster):
         self.monsterNum-=1
-        if(self.monsterNum==0):#TODO: WIN STATE
-            pass
+        if(self.monsterNum==0):
+            print("Congratulations! You win!")
+            exit()
 
 
     def printHouses(self):

@@ -4,8 +4,8 @@ class Player:
 
 
     def __init__(self):
-        self.health = randint(100,125)
-        self.atk=randint(10,20)
+        self.health = randint(500,700)
+        self.atk=randint(15,30)
         # x , y of house
         self.loc = [0,0]
 
@@ -23,10 +23,6 @@ class Player:
             self.inventory[wep]=self.inventory[wep] + Player.AMT_USES[wep]
 
 
-
-
-
-
     def genWeapon():
         number = randint(0,2)
         if(number==0):
@@ -40,9 +36,12 @@ class Player:
     def attack(self,weapon):
         if weapon in self.inventory:
             if(self.inventory[weapon] > 0):
-                damage=self.atk * randint( Player.BASE_MOD[weapon], Player.MARGINS[weapon] )
+                damage=self.atk * uniform( Player.BASE_MOD[weapon], Player.MARGINS[weapon] )
                 self.inventory[weapon] = self.inventory[weapon] - 1
-
+                print("You did {:f} damage".format(damage))
+                return damage
+            else:
+                print("You are out of {}.".format(weapon))
 
 
     def getLocation(self):
@@ -56,19 +55,19 @@ class Player:
 
     def getHit(self,damage):
         if(damage==-1):
-            self.health+=1
+            self.health=self.health+1
             weapon=Player.genWeapon()
-            self.inventory[weapon]+=Player.AMT_USES[weapon]
+            self.inventory[weapon]= self.inventory[weapon]+Player.AMT_USES[weapon]
 
         else:
-            self.health-=damage
+            self.health=self.health-damage
             if(self.health <= 0):
-                pass
-                #TODO: LOSE STATE
+                print("Sorry. You lose! Try again.")
+                exit()
 
     def printPlayer(self):
-        print("\nPlayer:\n\tHealth: {:d}\n\tAttack: {:d}\n\tLocation: {:d}, {:d}\n\tInventory:"
-        .format(self.health,self.atk,self.loc[0],self.loc[1]))
+        print("\nPlayer:\n\t[ Health: {:d}  /  Attack: {:d} ]\n\tInventory:"
+        .format(self.health,self.atk))
 
         for x in self.inventory:
             print("\t-\t{}\t:\t{:d}".format(x,self.inventory[x]))
@@ -91,4 +90,16 @@ class Player:
         "SourStraws":2,
         "ChocolateBars":4,
         "NerdBomb":1
+    }
+    SHORT_WEAPONS={
+        "hs":"HersheyKisses",
+        "ss":"SourStraws",
+        "cb":"ChocolateBars",
+        "nb":"NerdBomb"
+    }
+    WEAPONS={
+        "HersheyKisses",
+        "SourStraws",
+        "ChocolateBars",
+        "NerdBomb"
     }

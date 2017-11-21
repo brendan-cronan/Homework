@@ -12,12 +12,15 @@ class CLI:
 
             self.parseInput(userIn)
 
-            leave= userIn == "quit"
+            leave = (userIn == "quit")
 
 
         if(leave):
             print("Goodbye!")
 
+    def attackCmd(self):
+        print("You Attack the House.")
+        self.game.attack()
 
     def movePlayer(self,direc):
         print("You are moving {}".format(direc))
@@ -25,13 +28,20 @@ class CLI:
 
 
     def parseInput(self,cmd):
+        #Movement options
         if cmd in CLI.directions.keys():
             direc=CLI.directions[cmd]
             self.movePlayer(direc)
         elif cmd in CLI.directions.values():
             self.movePlayer(cmd)
-        if(cmd == "quit" or cmd == "q"):
-            exit()
+        elif cmd == "stay" or "":
+            pass
+        elif cmd == "quit" or cmd == "q":
+            quit()
+        elif cmd == "attack" or "atk":
+            self.attackCmd()
+        else:
+            pass
 
 
 

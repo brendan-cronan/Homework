@@ -9,6 +9,9 @@ class Game:
     def __init__(self, numHouses=10, debug=False):
         self.hood = Neighborhood(numHouses, debug)
 
+    def attack(self):
+        self.hood.attackHouse()
+
     def move(self,stringDir):
         direc=Game.getDir(stringDir)
         playerLoc=self.hood.getPlayer().getLocation()
