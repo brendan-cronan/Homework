@@ -74,21 +74,21 @@ class Player:
             print("\t-\t{}\t:\t{:d}".format(x,self.inventory[x]))
 
 
-        BASE_MOD={
+    BASE_MOD={
         "HersheyKisses":1,
         "SourStraws":1,
         "ChocolateBars":2,
         "NerdBomb":3.5
-        }
-        MARGINS={
+    }
+    MARGINS={
         "HersheyKisses":0,
         "SourStraws":.75,
         "ChocolateBars":.4,
         "NerdBomb":1.5
-        }
-        AMT_USES={
+    }
+    AMT_USES={
         "HersheyKisses":9999,
         "SourStraws":2,
         "ChocolateBars":4,
         "NerdBomb":1
-        }
+    }

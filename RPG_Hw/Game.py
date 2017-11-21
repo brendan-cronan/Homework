@@ -5,7 +5,6 @@ import sys
 
 
 class Game:
-    self.hood
     DEFAULT_HOUSE_NUMBER=10
     def __init__(self, numHouses=10, debug=False):
         self.hood = Neighborhood(numHouses, debug)
@@ -13,25 +12,27 @@ class Game:
     def move(self,stringDir):
         direc=Game.getDir(stringDir)
         playerLoc=self.hood.getPlayer().getLocation()
-        newLoc=[]
+        newLoc=[0,0]
         newLoc[0]=playerLoc[0]+direc[0]
         newLoc[1]=playerLoc[1]+direc[1]
-        self.hood.movePlayer(x,y)
+
+        if(self.hood.isValidSpace(newLoc[0],newLoc[1])):
+            self.hood.movePlayer(newLoc[0],newLoc[1])
 
 
     def getDir(stringDir):
-        direc=[]
-        direction=stringDir.upper()
-        if(direction=="NORTH"):
+        direc=[0,0]
+        direction=stringDir.lower()
+        if(direction=="north"):
             direc[0]=0
             direc[1]=-1
-        if(direction=="EAST"):
+        if(direction=="east"):
             direc[0]=1
             direc[1]=0
-        if(direction=="SOUTH"):
+        if(direction=="south"):
             direc[0]=0
             direc[1]=1
-        if(direction=="WEST"):
+        if(direction=="west"):
             direc[0]=-1
             direc[1]=0
 

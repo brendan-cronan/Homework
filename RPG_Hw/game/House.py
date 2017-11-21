@@ -17,9 +17,9 @@ class House(Observer,Observable):
 
     def printHouse(self):
         print("\nHouse #{:d}, Number of Monsters={:d}".format(self.houseNum,self.numMonsters))
-        for x in range(self.numMonsters):
-            print("\t")
-            self.monsters[x].printMonster()
+        #for x in range(self.numMonsters):
+        #    print("\t")
+        #    self.monsters[x].printMonster()
 
     def update(self,monster):
         if monster in monsters:
