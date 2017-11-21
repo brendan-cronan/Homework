@@ -4,8 +4,22 @@ from game.Observable import Observable
 from monsters import *
 from random import uniform,randint
 
+"""
+The House Object is primarily responsible for holding both monsters,
+and the player when they arrive.
+
+This class also Takes care of applying and retrieving damage from all of the
+monsters inside.
+
+This class listens for monster deaths and then adds a person in their place.
+
+"""
 class House(Observer,Observable):
 
+    """
+        this initializes everything given a random number of monsters to create
+        and also adds the house as a listener to the monsters
+    """
     def __init__(self,numMonsters,houseNum):
         self.numMonsters=numMonsters
         self.houseNum=houseNum
@@ -16,6 +30,7 @@ class House(Observer,Observable):
             self.monsters.append(self.makeMonster(randint(0,4)))
             self.monsters[x].add_observer(self)
 
+    #printer method
     def printHouse(self):
         print("\nHouse #{:d}, Number of Monsters={:d}".format(self.houseNum,self.numMonsters))
         out="[ "
@@ -24,21 +39,26 @@ class House(Observer,Observable):
         out="{}{}".format(out," ]")
         print(out)
 
+
+    #listens for death... replaces with person and updates neighborhood
     def update(self,monster):
-        print("update House")
         if monster in self.monsters:
             self.monsters.remove(monster)
             self.monsters.append(Person())
             self.update_observers(monster)
 
+    #
     def atk(self,dmgVal,weapon):
-        print("Attack House")
         for monster in self.monsters:
-            print(monster)
             monster.getHit(dmgVal,weapon)
 
         self.printHouse()
 
+    def damage(self):
+        total=0.01
+        for monster in self.monsters:
+            total = total + monster.attack()
+        return total
 
 
     def addPlayer(self, player):

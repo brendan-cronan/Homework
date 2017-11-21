@@ -31,7 +31,6 @@ class Monster(ABC,Observable):
         return randint(lowBound,upBound)
 
     def die(self):
-        print("DIE")
         self.update_observers(self)
 
     def __str__(self):

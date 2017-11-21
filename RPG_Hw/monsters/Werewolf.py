@@ -12,10 +12,11 @@ class Werewolf(Monster):
     def attack(self):
         return self.strength + Monster.randNum(0,self.margin)
     def getHit(self,damage,weapon):
+        d=0.01
         d = damage
         if(weapon == "ChocolateBars" or weapon == "SourStraws"):
-            d = 0
-        self.health = self.health- d
+            d = 0.01
+        self.health = self.health - damage
         if(self.health<=0):
             self.die()
 

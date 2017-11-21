@@ -65,11 +65,22 @@ class Neighborhood(Observer):
                 break
             elif wep in Player.SHORT_WEAPONS.keys():
                 atkval=self.player.attack(Player.SHORT_WEAPONS[wep])
-                tmpHouse.atk(atkVal,wep)
+                tmpHouse.atk(atkval,Player.SHORT_WEAPONS[wep])
+
+                dmg=tmpHouse.damage()
+                self.player.getHit(dmg)
+                print("You took {:f} damage.\nYour new health is {:f}\n".format(dmg,self.player.getHealth()))
+
+
                 suc=True
             elif wep in Player.WEAPONS:
                 atkval=self.player.attack(wep)
-                tmpHouse.atk(atkVal,wep)
+                tmpHouse.atk(100.01,wep)
+
+                dmg=tmpHouse.damage()
+                self.player.getHit(dmg)
+                print("You took {:f} damage.\nYour new health is {:d}".format(dmg,self.player.getHealth()))
+
                 suc=True
             else:
                 print("Incorrect Input. Try again.")

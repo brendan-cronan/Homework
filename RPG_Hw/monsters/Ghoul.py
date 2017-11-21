@@ -21,7 +21,7 @@ class Ghoul(Monster):
         d=damage
         if(weapon == "NerdBomb"):
             d=damage*5
-        self.health = self.health- d
+        self.health = self.health - d
         if(self.getHealth()<=0):
             self.die()
 

@@ -15,12 +15,10 @@ class Vampire(Monster):
         return self.getStrength() + Monster.randNum(0,self.getMargin())
 
     def getHit(self,damage,weapon):
-        #print("HIT")
         d = damage
         if(weapon == "ChocolateBars"):
-            d = 0
+            d = 0.01
         self.health = self.health - damage
-        print (self.health)
         if(self.health<=0):
             self.die()
 

@@ -4,7 +4,7 @@ class Player:
 
 
     def __init__(self):
-        self.health = randint(500,700)
+        self.health = randint(400,600)
         self.atk=randint(15,30)
         # x , y of house
         self.loc = [0,0]
@@ -46,6 +46,8 @@ class Player:
 
     def getLocation(self):
         return self.loc
+    def getHealth(self):
+        return self.health
 
     def movePlayer(self,x,y):
         self.loc[0]=x
@@ -66,7 +68,7 @@ class Player:
                 exit()
 
     def printPlayer(self):
-        print("\nPlayer:\n\t[ Health: {:d}  /  Attack: {:d} ]\n\tInventory:"
+        print("\nPlayer:\n\t[ Health: {:f}  /  Attack: {:d} ]\n\tInventory:"
         .format(self.health,self.atk))
 
         for x in self.inventory:
